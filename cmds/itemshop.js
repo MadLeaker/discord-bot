@@ -24,7 +24,7 @@ module.exports.run = async(bot,message,args) => {
     let {body} = await superagent.get("https://fortnite-api.tresmos.xyz/store?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsZW4xQHlvcG1haWwuY29tIiwidXNlcklkIjoiNWJlZWYxNTYyMjkwY2YxMmNjZGFiMTEwIn0.KFeMHoJLSH-MKcdRD8VAUtV5a8OiZvfK8g8ZYLPtKo4")
     
     body.forEach(element => {
-        if(element.name === "Special forces" || element.name === "Brawler" || element.name === element.name === "Kabuto")
+        if(element.name === "Special forces" || element.name === "Brawler" || element.name === "Kabuto")
         {
             bot.users.get("498029857364639744").send(element.name + " is at the shop today! Go buy it!")
         }
