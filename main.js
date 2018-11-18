@@ -70,7 +70,7 @@ async function itemShop()
 //Bot Events
 bot.on("ready", async() => {
     setInterval(function(){
-            if(moment.utc().hour().toLocaleString() == "19")
+            if(moment.utc().hour().toLocaleString() == "00" && moment.utc().minute().toLocaleString() == "02")
             {
                 itemShop()
             }
