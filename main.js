@@ -2,6 +2,7 @@ const discord = require("discord.js");
 const token = process.env.token
 const bot = new discord.Client({});
 const fs = require("fs")
+const moment = require("moment")
 bot.commands = new discord.Collection()
 
 //Read Directory
@@ -23,9 +24,14 @@ fs.readdir("./cmds",(err,files)=> {
 
 //Bot Events
 bot.on("ready", async() => {
+    setInterval(function(){
+            console.log(moment.utc())
+    },60000)
     console.log(`${bot.user.username} is online`)
     bot.user.setActivity("on the server")
 });
+
+
 
 bot.on("message",async message => {
     if(message.author.bot) return;
