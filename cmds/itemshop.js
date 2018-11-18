@@ -1,9 +1,18 @@
 const discord = require('discord.js')
 const superagent = require('superagent')
 
+const embedRarityColors = {
+    rare: "#147dc0",
+    legendary: "#d68029",
+    uncommon: "#2f8f07",
+    epic: "#b454da",
+}
+
 String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
 }
+
+
 
 module.exports.run = async(bot,message,args) => {
     if(message.channel.name === "item-shop")
@@ -16,7 +25,7 @@ module.exports.run = async(bot,message,args) => {
         let type = element.type.replaceAt(0,element.type.charAt(0).toUpperCase())
         let featured = element.featured
         let embed = new discord.RichEmbed()
-        embed.setColor("#d80f0f")
+        embed.setColor(embedRarityColors[element.rarity])
         embed.setTitle(element.name)
         embed.addField("Cost",element.cost + " Vbucks")
         embed.addField("Rarity",rarity)
