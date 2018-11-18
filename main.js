@@ -25,7 +25,7 @@ fs.readdir("./cmds",(err,files)=> {
 //Bot Events
 bot.on("ready", async() => {
     setInterval(function(){
-            console.log(moment.utc().hour().toLocaleString())
+            console.log(moment.utc().hours().toLocaleString())
     },60000)
     console.log(`${bot.user.username} is online`)
     bot.user.setActivity("on the server")
