@@ -3,6 +3,7 @@ const token = process.env.token
 const bot = new discord.Client({});
 const fs = require("fs")
 const moment = require("moment")
+const superagent = require("superagent")
 bot.commands = new discord.Collection()
 
 //Read Directory
