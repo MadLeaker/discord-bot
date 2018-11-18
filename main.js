@@ -69,9 +69,9 @@ function itemShop()
 //Bot Events
 bot.on("ready", async() => {
     setInterval(function(){
-            if(moment.utc().hour().toLocaleString() == "18")
+            if(moment.utc().hour().toLocaleString() == "19")
             {
-                
+                itemShop()
             }
     },60000)
     console.log(`${bot.user.username} is online`)
