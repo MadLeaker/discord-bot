@@ -6,6 +6,7 @@ String.prototype.replaceAt=function(index, replacement) {
 }
 
 module.exports.run = async(bot,message,args) => {
+    message.delete()
     let {body} = await superagent.get("https://fortnite-api.tresmos.xyz/store?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsZW4xQHlvcG1haWwuY29tIiwidXNlcklkIjoiNWJlZWYxNTYyMjkwY2YxMmNjZGFiMTEwIn0.KFeMHoJLSH-MKcdRD8VAUtV5a8OiZvfK8g8ZYLPtKo4")
     
     body.forEach(element => {
