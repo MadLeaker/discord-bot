@@ -3,8 +3,35 @@ const token = process.env.token
 const bot = new discord.Client({});
 const fs = require("fs")
 const moment = require("moment")
+const fortniteApi = require("fortnite-api")
 const superagent = require("superagent")
 bot.commands = new discord.Collection()
+const express = require('express')
+const app = express()
+const config = require("./config.json")
+
+let api = new fortniteApi(
+    [
+      config.email,
+      config.password,
+      config.clientLauncherToken,
+      config.fortniteClientToken
+    ], {
+      debug: true
+    }
+  )
+
+app.get("/store",function(req,res){
+            api.login().then(function(){
+                api.getStore("en").then(function(store){
+                    res.setHeader("Content-Type","application/json")
+                    res.status(200).send(store)
+                }).catch(err => {
+                    res.setHeader('Content-Type', 'application/json')
+                    res.status(400).send(JSON.stringify({'err': err}, null, 3))
+                  })
+            })
+}).listen(1235)
 
 //Read Directory
 fs.readdir("./cmds",(err,files)=> {
@@ -52,6 +79,7 @@ async function itemShop()
         embed.setTitle(element.name)
         embed.addField("Cost",element.cost + " Vbucks")
         embed.addField("Rarity",rarity)
+        
         embed.addField("Type",type)
         if(featured === 1)
         {
@@ -70,7 +98,7 @@ async function itemShop()
 //Bot Events
 bot.on("ready", async() => {
     setInterval(function(){
-            if(moment.utc().hour().toLocaleString() == "00" && moment.utc().minute().toLocaleString() == "02")
+            if(moment.utc().hour() === "04" && moment.utc().minute() == "21")
             {
                 itemShop()
             }
