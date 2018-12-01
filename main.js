@@ -31,7 +31,7 @@ app.get("/store",function(req,res){
                     res.status(400).send(JSON.stringify({'err': err}, null, 3))
                   })
             })
-}).listen(1235)
+}).listen(process.env.PORT || 8080)
 
 //Read Directory
 fs.readdir("./cmds",(err,files)=> {
